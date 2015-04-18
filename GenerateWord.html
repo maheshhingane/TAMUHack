@@ -1,0 +1,56 @@
+<HEAD>
+<TITLE> E2SL </TITLE>
+<link href="GenerateWord.css" rel="stylesheet">
+
+<SCRIPT LANGUAGE="JavaScript">
+  var totalQuestions = 10;
+  var correctAnswers = 0;
+  var incorrectAnswers = 0;
+  function showResult(){
+    alert("You got " + correctAnswers + " out of " + totalQuestions + " answers correct.");
+    location.reload();
+  }
+  function generateText(){
+    if(correctAnswers+incorrectAnswers == totalQuestions){
+      showResult();
+    }
+    else{
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      for( var i=0; i < 1; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      document.getElementById("generatedText").innerHTML = text;
+      document.getElementById("generatedText").className = 'newWord';
+    }
+  }
+  window.onload = generateText;
+  
+  function wordMatched(){
+    correctAnswers++;
+    document.getElementById("generatedText").className = 'wordMatched';
+    setTimeout(generateText, 2000);
+  }
+
+  function wordNotMatched(){
+    incorrectAnswers++;
+    document.getElementById("generatedText").className = 'wordNotMatched';
+    setTimeout(function() {
+        document.getElementById("generatedText").className = 'newWord';
+    }, 2000);
+  }
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+<CENTER>
+  <H2>Translate the following to American Sign Language:</H2>
+  <HR>
+  <H1 ID='generatedText'></H1>
+</CENTER>
+
+<BUTTON ONCLICK='wordMatched()'>Match</BUTTON>
+<BUTTON ONCLICK='wordNotMatched()'>No match</BUTTON>
+
+</BODY>
+</HTML>

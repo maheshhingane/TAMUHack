@@ -1,0 +1,15 @@
+h1 {
+	font-size: 100px;
+}
+
+.newWord {
+	color: #848484;
+}
+
+.wordMatched {
+	color: #00FF00;
+}
+
+.wordNotMatched {
+	color: #FF0000;
+}
